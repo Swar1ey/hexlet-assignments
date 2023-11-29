@@ -15,8 +15,12 @@ public class App {
             swappedData.put(entry.getValue(), entry.getKey());
         }
 
-        keyValueStorage.toMap().clear();
-        keyValueStorage.toMap().putAll(swappedData);
+        for (String key : currentData.keySet()) {
+            keyValueStorage.unset(key);
+        }
+        for (Map.Entry<String, String> entry : swappedData.entrySet()) {
+            keyValueStorage.set(entry.getKey(), entry.getValue());
+        }
     }
 }
 // END
